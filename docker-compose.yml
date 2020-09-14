@@ -1,0 +1,38 @@
+version: '3.1'
+ 
+services:
+    haproxy:
+        build: ./ha-proxy
+        image: hthunberg/demo-haproxy
+        restart: always
+        ports:
+            - 8888:8888
+        networks:
+            - demo-network
+        volumes:
+            - ${PWD}/ha-proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    apache1:
+        build: ./apache1
+        image: hthunberg/apache1
+        ports:
+            - 8090:80
+        networks:
+            - demo-network
+    apache2:
+        build: ./apache2
+        image: hthunberg/apache2
+        ports:
+            - 8091:80
+        networks:
+            - demo-network
+    apacheError:
+        build: ./apacheError
+        image: hthunberg/apache_error
+        ports:
+            - 8092:80
+        networks:
+            - demo-network
+       
+networks:
+  demo-network:
+    driver: bridge
