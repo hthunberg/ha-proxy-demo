@@ -28,6 +28,8 @@ apache1_1      | 192.168.96.1 - - [14/Sep/2020:10:01:44 +0000] "GET /health HTTP
 apache2_1      | 192.168.96.1 - - [14/Sep/2020:10:01:45 +0000] "GET /health HTTP/1.0" 200 490
 ~~~
 
+Check the stats at: [http://localhost:8888/haproxy?stats](http://localhost:8888/haproxy?stats) (admin/admin)
+
 #### 2: Start requesting backends
 
 ~~~

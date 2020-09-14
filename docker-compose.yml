@@ -9,8 +9,10 @@ services:
             - 8888:8888
         networks:
             - demo-network
+        container_name: haproxy_demo
         volumes:
             - ${PWD}/ha-proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+            - ${PWD}/ha-proxy/demo_acl.lst:/etc/haproxy/demo_acl.lst:ro
     apache1:
         build: ./apache1
         image: hthunberg/apache1
@@ -18,6 +20,7 @@ services:
             - 8090:80
         networks:
             - demo-network
+        container_name: apache1
     apache2:
         build: ./apache2
         image: hthunberg/apache2
@@ -25,6 +28,7 @@ services:
             - 8091:80
         networks:
             - demo-network
+        container_name: apache2
     apacheError:
         build: ./apacheError
         image: hthunberg/apache_error
@@ -32,6 +36,7 @@ services:
             - 8092:80
         networks:
             - demo-network
+        container_name: apache_error
        
 networks:
   demo-network:
